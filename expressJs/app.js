@@ -1,5 +1,9 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
+
+//Parser to parse json
+app.use(bodyParser.json());
 
 //get request
 app.get("/", (req, res) => {
@@ -38,6 +42,13 @@ app.get("/moviesJson", (req, res) => {
     },
   ];
   res.json(moviesList);
+});
+
+//POST Request
+
+app.post("/movies", (req, res) => {
+  let title = req.body.title;
+  res.send('Success..!')
 });
 
 app.listen(3000, () => {
