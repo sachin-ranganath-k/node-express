@@ -1,10 +1,15 @@
 <html>
     <head></head>
     <body>
-        <h1>List of students</h1>
+       
         {{#studentsKey}}
-            {{regNo}} - {{branch}} - {{address.street}} ({{address.zipCode}})
-            <br>
+            <h1>List of students (If exists)</h1>
+                {{regNo}} - {{branch}} - {{address.street}} ({{address.zipCode}})
+                <br>
+        {{/studentsKey}}
+
+        {{^studentsKey}}
+            No students exist (If do not exist).
         {{/studentsKey}}
 
     </body>

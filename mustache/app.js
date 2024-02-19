@@ -48,6 +48,9 @@ let students = [
     },
   },
 ];
+
+//If no data exists. Forcing the arra to be blank to check
+//students=[]
 app.get("/students", (req, res) => {
   res.render("students", { studentsKey: students });
 });
