@@ -29,6 +29,29 @@ app.get("/", (req, res) => {
   res.render("index",city);
 });
 
+//Dynamic data with array of objects
+let students = [
+  {
+    regNo: "JS0001",
+    branch: "CS",
+    address: {
+      street: "JP Nagar",
+      zipCode: "560258",
+    },
+  },
+  {
+    regNo: "JS0002",
+    branch: "EC",
+    address: {
+      street: "Vijay Nagar",
+      zipCode: "562002",
+    },
+  },
+];
+app.get("/students", (req, res) => {
+  res.render("students", { studentsKey: students });
+});
+
 app.listen(3000, () => {
   console.log("Server is running....!");
 });
