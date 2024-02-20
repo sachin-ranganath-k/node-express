@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const mustacheExpress = require("mustache-express");
 
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({ extended: false })); //To parse URLs
+
 //mustache -> File extension
 app.engine("mustache", mustacheExpress());
 
@@ -26,7 +30,7 @@ let city = {
 };
 
 app.get("/", (req, res) => {
-  res.render("index",city);
+  res.render("index", city);
 });
 
 //Dynamic data with array of objects
@@ -53,6 +57,19 @@ let students = [
 //students=[]
 app.get("/students", (req, res) => {
   res.render("students", { studentsKey: students });
+});
+
+//Form handling with bodyParser
+app.get("/add-student", (req, res) => {
+  res.render("add-student");
+});
+
+app.post("/add-student", (req, res) => {
+  let studName = req.body.studentName;
+  let studAge = req.body.studentAge;
+  console.log(studName);
+  console.log(studAge);
+  res.status(200).send();
 });
 
 app.listen(3000, () => {
