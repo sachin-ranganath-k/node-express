@@ -1,25 +1,21 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const mustacheExpress = require("mustache-express");
+
+const viewsPath = path.join(__dirname, "./views");
 
 const bodyParser = require("body-parser");
 
-app.use(bodyParser.urlencoded({ extended: false })); //To parse URLs
 
-//mustache -> File extension
-app.engine("mustache", mustacheExpress());
 
+//Registering partials
+// views/partials/fileName.mustache
+app.engine("mustache", mustacheExpress(viewsPath + "/partials", ".mustache"));
+app.set('views', viewsPath)
 app.set("view engine", "mustache");
 
-//views -> folder name
-app.set("views", __dirname + "/views");
-
-//Static data
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
-
-//Dynamic data
+app.use(bodyParser.urlencoded({ extended: false })); //To parse URLs
 
 let city = {
   cityName: "Bengaluru",
